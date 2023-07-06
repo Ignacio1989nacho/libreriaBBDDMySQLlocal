@@ -14,17 +14,17 @@ public class ServicioAutor {
         Autor autor = new Autor();
         System.out.println("Ingresa Autor: ");
         autor.setNombre(LEER.next());
-        autorDao.guardar(autor);
+        autorDao.persistAutor(autor);
 
     }
 
     public void findAllAutor() {
-
+        listaAutorAlta();
         System.out.println("ingresa el nombre del autor:");
         String autor = LEER.next();
 
         List<Autor> listaAutor = autorDao.buscarAutor(autor);
-
+        
         if (listaAutor.isEmpty() || listaAutor == null) {
             System.out.println("no existen registros del autor");
 
@@ -36,8 +36,8 @@ public class ServicioAutor {
 
     }
 
-    public void listaAutor() {
-        List<Autor> listaAutor = autorDao.listaAutor();
+    public void listaAutorAlta() {
+        List<Autor> listaAutor = autorDao.findAll();
         for (Autor e : listaAutor) {
             System.out.println(e);
         }
@@ -45,7 +45,7 @@ public class ServicioAutor {
 
     public void updateAutor() {
         int op = 0;
-        listaAutor();
+        listaAutorAlta();
         System.out.println("Escoge el nombre del autor para modificar:");
         String autor = LEER.next();
 
@@ -63,10 +63,10 @@ public class ServicioAutor {
                 System.out.println("Escoge (1)ALTA - (2)BAJA");
                 int opcion = LEER.nextInt();
                 if (opcion == 1) {
-                    a.setAlta(true);
+                    autorDao.autorAlta(a);
                 }
                 if (opcion == 2) {
-                    a.setAlta(false);
+                    autorDao.autorBaja(a);
                 }
                 break;
             default:

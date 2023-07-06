@@ -31,7 +31,7 @@ public class ServicioLibro {
         libro.setEjemplaresRestantes((libro.getEjemplares() - libro.getEjemplaresPrestados()));
         cargarAutor(libro);
         cargarEditorial(libro);
-        libroDao.guardar(libro);
+        libroDao.persistLibro(libro);
     }
 
     public void cargarAutor(Libro libro) {
@@ -44,7 +44,7 @@ public class ServicioLibro {
             Autor autor = new Autor();
             autor.setNombre(nombre);
             autor.setAlta(true);
-            autorDao.guardar(autor);
+            autorDao.persistAutor(autor);
             libro.setAutor(autor);
         } else {
             try{
@@ -71,7 +71,7 @@ public class ServicioLibro {
             Editorial editorial = new Editorial();
             editorial.setNombre(nombre);
             editorial.setAlta(true);
-            editorialDao.guardar(editorial);
+            editorialDao.persistEditorial(editorial);
             libro.setEditorial(editorial);
         } else {
             try{
@@ -87,34 +87,34 @@ public class ServicioLibro {
         }
     }
 
-    public void findAllLibros() {
-        List<Libro> listaLibro = libroDao.listaLibros();
+    public void findAllLibrosAlta() {
+        List<Libro> listaLibro = libroDao.findAll();
         for (Libro libro : listaLibro) {
             System.out.println(libro);
         }      
     }
     
-    public void eliminarLibro(){
+    public void eliminarLibroFisico(){
         int id = 0 ;
-        findAllLibros();
+        findAllLibrosAlta();
         try{
         System.out.println("Ingresa el id del libro a eliminar:");
         id = LEER.nextInt();
         }catch(Exception e){System.out.println("Error al ingresar el id del libro"+e);}
-        Libro libro = libroDao.buscarUnLibro(id);
-        libroDao.eliminar(libro);
+        Libro libro = libroDao.buscarUnLibroAlta(id);
+        libroDao.eliminarFisico(libro);
     }
     
     public void updateLibro(){
         int op = 0;
-        findAllLibros();
+        findAllLibrosAlta();
         
         System.out.println("Escoge el nombre del libro para modificar:");
         String libro = LEER.next();
 
         Libro l = libroDao.buscarLibro(libro).get(0);
         try{
-        System.out.println("Que deseas modificar?:\n1 - Titulo\n2 - Alta\n3 - Año\n4 - Ejemplares\n5 - Ejemplares Prestados\n6 - Autor\n7 - Editorial");
+        System.out.println("Que deseas modificar?:\n1 - Titulo\n2 - Alta\n3 - Año\n4 - Ejemplares\n5 - Ejemplares Prestados\n6 - Autor\n7 - Editorial\n8 - TODOS LOS LIBROS");
         op = LEER.nextInt();
         switch (op) {
             case 1:
@@ -124,8 +124,8 @@ public class ServicioLibro {
             case 2:
                 System.out.println("Escoge (1)ALTA - (2)BAJA");
                 int opcion = LEER.nextInt();
-                if (opcion == 1) {l.setAlta(true);}
-                if (opcion == 2) {l.setAlta(false);}
+                if (opcion == 1) {libroDao.libroAlta(l);}
+                if (opcion == 2) {libroDao.libroBaja(l);}
                 break;
             case 3:
                 System.out.println("Ingresa el año");
@@ -144,6 +144,9 @@ public class ServicioLibro {
                 break;
             case 7:
                 cargarEditorial(l);
+                break;
+            case 8:
+                findAllLibrosAlta();
                 break;
             default:
                 System.out.println("Opcion no correspondiente.");

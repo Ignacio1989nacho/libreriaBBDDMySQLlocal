@@ -11,27 +11,30 @@ public class Libreria2 {
 
     public static void main(String[] args) {
         int op = 0;
-
-        try {
-            System.out.println("MENU\n1 - LIBRO\n2 - AUTOR\n3 - EDITORIAL");
-            op = Leer.nextInt();
-            switch (op) {
-                case 1:
-                    menuLibro();
-                    break;
-                case 2:
-                    menuAutor();
-                    break;
-                case 3:
-                    menuEditorial();
-                    break;
-                default:
-                    System.out.println("SELECCION INCORRECTA.");
-                    break;
+        boolean log = false;
+        do {
+            try {
+                System.out.println("MENU\n1 - LIBRO\n2 - AUTOR\n3 - EDITORIAL");
+                op = Leer.nextInt();
+                switch (op) {
+                    case 1:
+                        menuLibro();
+                        break;
+                    case 2:
+                        menuAutor();
+                        break;
+                    case 3:
+                        menuEditorial();
+                        break;
+                    default:
+                        System.out.println("SELECCION INCORRECTA.");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Error al escoger una opcion" + e);
+                Leer.nextLine();
             }
-        } catch (Exception e) {
-            System.out.println("Error al escoger una opcion" + e);
-        }
+        } while (!log);
     }
 
     public static void menuLibro() {
@@ -44,7 +47,7 @@ public class Libreria2 {
                 sl.crearLibro();
                 break;
             case 2:
-                sl.findAllLibros();
+                sl.findAllLibrosAlta();
                 break;
             case 3:
                 sl.updateLibro();
@@ -56,6 +59,7 @@ public class Libreria2 {
         }
 
     }
+
     public static void menuAutor() {
         ServicioAutor sa = new ServicioAutor();
         int op = 0;
@@ -78,6 +82,7 @@ public class Libreria2 {
         }
 
     }
+
     public static void menuEditorial() {
         ServicioEditorial se = new ServicioEditorial();
         int op = 0;

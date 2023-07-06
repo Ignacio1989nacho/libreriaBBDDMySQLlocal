@@ -15,20 +15,20 @@ public abstract class DAO {
     private final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("Libreria2PU");
     protected EntityManager EM = EMF.createEntityManager();
 
-    private void desconectar() {
+    protected void desconectar() {
         if (EM.isOpen()) {
             EM.close();
         }
     }
 
-    private void conectar() {
+    protected void conectar() {
         if (!EM.isOpen()) {
             EM = EMF.createEntityManager();
         }
 
     }
 
-    public void actualizar(Object obj) {
+    protected void actualizar(Object obj) {
         conectar();
         EM.getTransaction().begin();
         EM.merge(obj);
@@ -36,7 +36,7 @@ public abstract class DAO {
         desconectar();
     }
 
-    public void guardar(Object obj) {
+    protected void guardar(Object obj) {
         conectar();
         EM.getTransaction().begin();
         EM.persist(obj);
@@ -44,7 +44,7 @@ public abstract class DAO {
         desconectar();
     }
 
-    public void eliminar(Object obj) {
+    protected void eliminar(Object obj) {
 //        if (obj instanceof Libro) {
 //            Libro libro = (Libro) obj;
 //            libro.setAlta(false);

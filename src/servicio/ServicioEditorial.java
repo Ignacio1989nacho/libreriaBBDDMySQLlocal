@@ -14,19 +14,19 @@ public class ServicioEditorial {
         Editorial editorial = new Editorial();
         System.out.println("Ingresa la editorial: ");
         editorial.setNombre(LEER.next());
-        editorialDao.guardar(editorial);
+        editorialDao.persistEditorial(editorial);
         
     }
     
-    public void listaEditorial() {
-        List<Editorial> listaEditorial = editorialDao.listaEditorial();
+    public void listaEditorialAlta() {
+        List<Editorial> listaEditorial = editorialDao.findAll();
         for (Editorial e : listaEditorial) {
             System.out.println(e);
         }
     }
     
     public void findAllEditorial() {
-        
+        listaEditorialAlta();
         System.out.println("ingresa el nombre de la editorial:");
         String editorial = LEER.next();
         
@@ -45,7 +45,7 @@ public class ServicioEditorial {
     
     public void updateEditorial() {
         int op = 0;
-        listaEditorial();
+        listaEditorialAlta();
         System.out.println("Escoge una editorial para modificar:");
         String editorial = LEER.next();
         
@@ -62,8 +62,8 @@ public class ServicioEditorial {
             case 2:
                 System.out.println("Escoge (1)ALTA - (2)BAJA");
                 int opcion = LEER.nextInt();
-                if (opcion == 1) { e.setAlta(true);}  
-                if (opcion == 2) { e.setAlta(false);} 
+                if (opcion == 1) { editorialDao.editorialAlta(e);}  
+                if (opcion == 2) { editorialDao.editorialBaja(e);} 
                 break;
             default:
                 System.out.println("Opcion no correspondiente.");
