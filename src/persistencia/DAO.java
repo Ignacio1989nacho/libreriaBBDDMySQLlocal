@@ -5,7 +5,6 @@
  */
 package persistencia;
 
-import entidad.Libro;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -25,7 +24,6 @@ public abstract class DAO {
         if (!EM.isOpen()) {
             EM = EMF.createEntityManager();
         }
-
     }
 
     protected void actualizar(Object obj) {

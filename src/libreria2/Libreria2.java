@@ -2,8 +2,10 @@ package libreria2;
 
 import java.util.Scanner;
 import servicio.ServicioAutor;
+import servicio.ServicioCliente;
 import servicio.ServicioEditorial;
 import servicio.ServicioLibro;
+import servicio.ServicioPrestamo;
 
 public class Libreria2 {
 
@@ -12,9 +14,10 @@ public class Libreria2 {
     public static void main(String[] args) {
         int op = 0;
         boolean log = false;
+
         do {
             try {
-                System.out.println("MENU\n1 - LIBRO\n2 - AUTOR\n3 - EDITORIAL");
+                System.out.println("MENU\n1 - LIBRO\n2 - AUTOR\n3 - EDITORIAL\n4 - CLIENTE\n5 - PRESTAMO LIBRO");
                 op = Leer.nextInt();
                 switch (op) {
                     case 1:
@@ -25,6 +28,12 @@ public class Libreria2 {
                         break;
                     case 3:
                         menuEditorial();
+                        break;
+                    case 4:
+                        cliente();
+                        break;
+                    case 5:
+                        prestamo();
                         break;
                     default:
                         System.out.println("SELECCION INCORRECTA.");
@@ -103,6 +112,18 @@ public class Libreria2 {
                 break;
 
         }
+
+    }
+
+    public static void cliente() {
+        ServicioCliente c = new ServicioCliente();
+        c.crearCliente();
+
+    }
+
+    public static void prestamo() {
+        ServicioPrestamo sp = new ServicioPrestamo();
+        sp.crearPrestamo();
 
     }
 }

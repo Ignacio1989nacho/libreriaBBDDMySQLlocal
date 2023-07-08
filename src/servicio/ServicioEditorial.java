@@ -7,8 +7,8 @@ import persistencia.EditorialDAO;
 
 public class ServicioEditorial {
     
-    private EditorialDAO editorialDao = new EditorialDAO();
     private Scanner LEER = new Scanner(System.in).useDelimiter("\n");
+    private EditorialDAO editorialDao = new EditorialDAO();
     
     public void crearEditorial() {
         Editorial editorial = new Editorial();

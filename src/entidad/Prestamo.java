@@ -6,40 +6,58 @@
 package entidad;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 
-/**
- *
- * @author Usuario
- */
+
 @Entity
 @Data
-public class Libro implements Serializable {
- 
+public class Prestamo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String titulo;
-    private Integer anio;
-    private Integer ejemplares;
-    private Integer ejemplaresPrestados;
-    private Integer ejemplaresRestantes;
-    private Boolean alta = false;
-    @ManyToOne
-    private Autor autor;
-    @ManyToOne
-    private Editorial editorial;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaPrestamo;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaDevolucion; 
+
+    @OneToOne
+    private Libro libro;
+
+    @OneToOne
+    private Cliente cliente;
+
+    public Prestamo(Date fechaPrestamo, Date fechaDevolucion, Libro libro, Cliente cliente) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.fechaDevolucion = fechaDevolucion;
+        this.libro = libro;
+        this.cliente = cliente;
+    }
+
+    public Prestamo(Libro libro, Cliente cliente) {
+        this.libro = libro;
+        this.cliente = cliente;
+    }
 
    
     
 
+    public Prestamo() {
+    }
+    
+ 
+    
     public Integer getId() {
         return id;
     }
@@ -58,16 +76,19 @@ public class Libro implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Libro)) {
+        if (!(object instanceof Prestamo)) {
             return false;
         }
-        Libro other = (Libro) object;
+        Prestamo other = (Prestamo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
- 
+    @Override
+    public String toString() {
+        return "entidad.Prestamo[ id=" + id + " ]";
+    }
     
 }

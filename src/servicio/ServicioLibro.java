@@ -11,8 +11,8 @@ import persistencia.LibroDAO;
 
 public class ServicioLibro {
 
-    private LibroDAO libroDao = new LibroDAO();
     private Scanner LEER = new Scanner(System.in).useDelimiter("\n");
+    private LibroDAO libroDao = new LibroDAO();
     private AutorDAO autorDao = new AutorDAO();
     private EditorialDAO editorialDao = new EditorialDAO();
 

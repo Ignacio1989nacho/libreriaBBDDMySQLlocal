@@ -29,9 +29,23 @@ public class AutorDAO extends DAO {
         return listaAutores;
     }
 
+    public List<Autor> listaAutorBaja() {
+        super.conectar();
+        List<Autor> listaAutor = EM.createQuery("SELECT a FROM Autor a WHERE a.alta = 0").getResultList();
+        super.desconectar();
+        return listaAutor;
+    }
+
+    public List<Autor> listaAutorAlta() {
+        super.conectar();
+        List<Autor> listaAutor = EM.createQuery("SELECT a FROM Autor a WHERE a.alta = 1").getResultList();
+        super.desconectar();
+        return listaAutor;
+    }
+
     public List<Autor> buscarAutor(String nombre) {
         super.conectar();
-        List<Autor> autor = EM.createQuery("SELECT a FROM Autor a WHERE a.nombre = :nombre ").setParameter("nombre", nombre).getResultList();
+        List<Autor> autor = EM.createQuery("SELECT a FROM Autor a WHERE a.nombre = :nombre AND a.alta = 1").setParameter("nombre", nombre).getResultList();
         super.desconectar();
         return autor;
     }
@@ -47,13 +61,14 @@ public class AutorDAO extends DAO {
         super.actualizar(a);
         super.desconectar();
     }
-    
-      public void autorAlta(Autor l) {
+
+    public void autorAlta(Autor l) {
         l.setAlta(true);
         super.conectar();
         updateAutor(l);
         super.desconectar();
     }
+
     public void autorBaja(Autor l) {
         l.setAlta(false);
         super.conectar();
