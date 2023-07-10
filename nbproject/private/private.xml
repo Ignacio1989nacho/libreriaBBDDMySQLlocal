@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/persistencia/EditorialDAO.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/entidad/Libro.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/persistencia/DAO.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/servicio/ServicioPrestamo.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/libreria2/Libreria2.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/persistencia/PrestamoDAO.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/entidad/Prestamo.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/persistencia/ClienteDAO.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/entidad/Cliente.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/persistencia/LibroDAO.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/webs/Libreria2/src/servicio/ServicioCliente.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
