@@ -15,7 +15,9 @@ public class ServicioLibro {
     private LibroDAO libroDao = new LibroDAO();
     private AutorDAO autorDao = new AutorDAO();
     private EditorialDAO editorialDao = new EditorialDAO();
-
+/**
+ * METODO CREA UN LIBRO Y LO GUARDA EN LA BBDD
+ */
     public void crearLibro() {
         Libro libro = new Libro();
         try{
@@ -33,7 +35,10 @@ public class ServicioLibro {
         cargarEditorial(libro);
         libroDao.persistLibro(libro);
     }
-
+/**
+ * METODO SETEA EL AUTOR AL LIBRO ANTERIORMENTE CREADO
+ * @param libro 
+ */
     public void cargarAutor(Libro libro) {
         int op = 0;
         System.out.println("Ingresa el nombre del autor:");
@@ -60,7 +65,10 @@ public class ServicioLibro {
         }
 
     }
-
+/**
+ * METODO SETEA LA EDITORIAL AL LIBRO ANTERIORMENTE CREADO
+ * @param libro 
+ */
     public void cargarEditorial(Libro libro) {
         int op = 0;
         System.out.println("Ingresa el nombre de la editorial:");
@@ -86,14 +94,18 @@ public class ServicioLibro {
             libro.setEditorial(listaEditorial.get(op - 1));
         }
     }
-
+/**
+ * METODO DEVUELVE TODOS LOS LIBROS CON EL ATRIBUTO ALTA EN TRUE
+ */
     public void findAllLibrosAlta() {
         List<Libro> listaLibro = libroDao.findAll();
         for (Libro libro : listaLibro) {
             System.out.println(libro);
         }      
     }
-    
+    /**
+     * METODO ELIMINA EL LIBRO COMPLETAMENTE DE LA BBDD... NO SE RECOMIENDA
+     */
     public void eliminarLibroFisico(){
         int id = 0 ;
         findAllLibrosAlta();
@@ -104,7 +116,9 @@ public class ServicioLibro {
         Libro libro = libroDao.buscarUnLibroAlta(id);
         libroDao.eliminarFisico(libro);
     }
-    
+    /**
+     * METODO MODIFICA EL LIBRO SEGUN LO ESPECIFICA EL USUARIO
+     */
     public void updateLibro(){
         int op = 0;
         findAllLibrosAlta();

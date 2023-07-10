@@ -117,13 +117,32 @@ public class Libreria2 {
 
     public static void cliente() {
         ServicioCliente c = new ServicioCliente();
-        c.crearCliente();
+     
+        int op = 0;
+        System.out.println("MENU\n1 - CREAR CLIENTE\n2 - MOSTRAR CLIENTES\n3 - MODIFICAR CLIENTE");
+        op = Leer.nextInt();
+        switch (op) {
+            case 1:
+                c.crearCliente();
+                break;
+            case 2:
+                c.findAllClientes();
+                break;
+            case 3:
+                c.updateCliente();
+                break;
+            default:
+                System.out.println("OPCION INCORRECTA");
+                break;
+
+        }
 
     }
 
     public static void prestamo() {
         ServicioPrestamo sp = new ServicioPrestamo();
-        sp.crearPrestamo();
+        //sp.crearPrestamo();
+        sp.findListaPrestamos();
 
     }
 }

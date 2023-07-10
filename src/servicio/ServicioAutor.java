@@ -9,7 +9,9 @@ public class ServicioAutor {
 
     private AutorDAO autorDao = new AutorDAO();
     private Scanner LEER = new Scanner(System.in).useDelimiter("\n");
-
+/**
+ * METODO crea el autor y lo setea en la bbdd
+ */
     public void crearAutor() {
         Autor autor = new Autor();
         System.out.println("Ingresa Autor: ");
@@ -17,7 +19,9 @@ public class ServicioAutor {
         autorDao.persistAutor(autor);
 
     }
-
+/**
+ * METODO busca la totalidad de los autores con el ATRIBUTO ALTA en TRUE!
+ */
     public void findAllAutor() {
         listaAutorAlta();
         System.out.println("ingresa el nombre del autor:");
@@ -35,14 +39,18 @@ public class ServicioAutor {
         }
 
     }
-
+/**
+ * METODO DEVUELVE TODOS LOS AUTORES, CON ALTA Y BAJA.
+ */
     public void listaAutorAlta() {
         List<Autor> listaAutor = autorDao.findAll();
         for (Autor e : listaAutor) {
             System.out.println(e);
         }
     }
-
+/***
+ * METODO MODIFICA EL TIPO DE ATRIBUTO DEL AUTOR, A ELECCION DEL USUARIO
+ */
     public void updateAutor() {
         int op = 0;
         listaAutorAlta();

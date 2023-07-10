@@ -21,18 +21,29 @@ public class ServicioPrestamo {
     private PrestamoDAO prestamoDao = new PrestamoDAO();
     private LibroDAO libroDao = new LibroDAO();
     private ClienteDAO clienteDao = new ClienteDAO();
-    
+    /**
+     * METODO CREA EL PRESTAMO SOLICITANDO AL USUARIO EL ID DEL LIBRO Y EL DNI DEL CLIENTE
+     */
     public void crearPrestamo(){
-        
-        Cliente c = clienteDao.buscarCliente(34977524L);
         System.out.println("Ingresa el id del libro:");
         int id = LEER.nextInt();
+        System.out.println("Ingresa el dni del cliente:");
+        Long dni = LEER.nextLong();
+        Cliente c = clienteDao.buscarCliente(dni);
+ 
         Libro l = libroDao.buscarUnLibroAlta(id);
-
         Prestamo p = new Prestamo(new Date(),new Date(),l,c);
-        //Prestamo p = new Prestamo(l,c);
-        
         prestamoDao.persistPrestamo(p);
     }
+    /**
+     * METODO MUESTRA TODOS LOS PRESTAMOS ACTUALMENTE DADOS.
+     */
+    public void findListaPrestamos(){
     
+    List<Prestamo> lista = prestamoDao.findAll();
+        for (Prestamo prestamo : lista) {
+            System.out.println("Apellido: "+prestamo.getCliente().getApellido()+"\nNombre: "+prestamo.getCliente().getNombre()
+            +"\nLibro: "+prestamo.getLibro().getTitulo());
+        }
+    }
 }
